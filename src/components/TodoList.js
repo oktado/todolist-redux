@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import {} from "redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import todoAction from "../redux/actions/todoAction";
 
 const TodoList = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.todos);
+  const list = useSelector((state) => state.todos);
+  const { todos } = list;
+  console.log(todos);
 
   useEffect(() => {
-    dispatch(todoAction.loadTodo());
-  }, []);
+    console.log(todos);
+  }, [todos]);
 
   return (
     <>
       <ul>
-        {todos &&
-          todos.map((todo) => {
-            return <li>{todo.title}</li>;
-          })}
+        {todos.map((todo) => {
+          return <li>{todo.title}</li>;
+        })}
       </ul>
     </>
   );

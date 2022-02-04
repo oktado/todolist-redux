@@ -19,10 +19,9 @@ function App() {
     dispatch({
       type: "CHANGE_USER_LOGIN_STATUS",
       payload: {
-        loginStatus: userStatus === "true" ? true : false,
+        loginStatus: !userStatus,
       },
     });
-
   }, []);
 
   return (

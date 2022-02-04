@@ -17,34 +17,17 @@ const loadTodo = () => async (dispatch) => {
   }
 };
 
-const addTodo = (id, title, complete) => async (dispatch) => {
+const addTodo = (id, title, priority, complete) => (dispatch) => {
   try {
-    const todos = await axios({
-      method: "post",
-      url: "https://jsonplaceholder.typicode.com/todos",
-      data: {
+    dispatch({
+      type: "ADD_TODO",
+      payload: {
         id,
         title,
+        priority,
         complete,
       },
     });
-
-    if (!todos.data.id) {
-      throw new Error("failed create new todo");
-    }
-
-    loadTodo();
-
-    // dispatch({
-    //   type: "ADD_TODO",
-    //   payload: {
-    //     newTodo: {
-    //       title: title,
-    //       id: id,
-    //       complete: complete,
-    //     },
-    //   },
-    // });
   } catch (error) {
     console.error();
   }

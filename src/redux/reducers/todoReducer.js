@@ -1,5 +1,12 @@
 const initialState = {
-  todos: [],
+  todos: [
+    {
+      id: 1,
+      title: "React-Redux",
+      priority: "Medium",
+      completed: false,
+    },
+  ],
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -9,9 +16,9 @@ const todoReducer = (state = initialState, action) => {
         todos: action.payload.newTodos,
       };
     case "ADD_TODO":
-      return {
-        todos: [...state.todos, action.paylod.newTodo],
-      };
+      let arrTemp = { ...state };
+      arrTemp.todos.push(action.payload);
+      return state;
     default:
       return state;
   }
